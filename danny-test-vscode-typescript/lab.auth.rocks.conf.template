@@ -1,6 +1,4 @@
 server {
-    listen 80;
-    listen [::]:80;
     server_name ${LAB_AUTH_ROCKS_URL};
 
     location / {
@@ -13,13 +11,16 @@ server {
 
     listen [::]:443 ssl;
     listen 443 ssl;
-
     ssl_certificate ${LETSENCRYPT_CERTS_AUTH_ROCKS}/fullchain.pem;
     ssl_certificate_key ${LETSENCRYPT_CERTS_AUTH_ROCKS}/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
-    if (${DOLLAR}host = ${LAB_AUTH_ROCKS_URL}) {
-        return 301 https://${DOLLAR}host${DOLLAR}request_uri;
-    }
+}
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${LAB_AUTH_ROCKS_URL};
 
-    return 404;
+    return 301 https://${DOLLAR}host${DOLLAR}request_uri;
 }
