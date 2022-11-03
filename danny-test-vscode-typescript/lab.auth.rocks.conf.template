@@ -1,0 +1,25 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ${LAB_AUTH_ROCKS_URL};
+
+    location / {
+        proxy_pass http://localhost:3000/;
+        proxy_set_header Host ${DOLLAR}host;
+        proxy_set_header Upgrade ${DOLLAR}http_upgrade;
+        proxy_set_header Connection upgrade;
+        proxy_set_header Accept-Encoding gzip;
+    }
+
+    listen [::]:443 ssl;
+    listen 443 ssl;
+
+    ssl_certificate ${LETSENCRYPT_CERTS_AUTH_ROCKS}/fullchain.pem;
+    ssl_certificate_key ${LETSENCRYPT_CERTS_AUTH_ROCKS}/privkey.pem;
+
+    if (${DOLLAR}host = ${LAB_AUTH_ROCKS_URL}) {
+        return 301 https://${DOLLAR}host${DOLLAR}request_uri;
+    }
+
+    return 404;
+}
