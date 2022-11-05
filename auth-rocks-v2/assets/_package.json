@@ -25,11 +25,7 @@
 		"url": "https://github.com/GorvGoyl/Shortcut-Menu-Bar-VSCode-Extension.git"
 	},
 	"homepage": "https://github.com/GorvGoyl/Shortcut-Menu-Bar-VSCode-Extension",
-	"categories": [
-		"Programming Languages",
-		"Other",
-		"Visualization"
-	],
+	"categories": ["Programming Languages", "Other", "Visualization"],
 	"keywords": [
 		"shortcut",
 		"toolbar",
@@ -75,7 +71,6 @@
 		"onCommand:ShortcutMenuBar.toggleWordWrap",
 		"onCommand:ShortcutMenuBar.changeEncoding",
 		"onCommand:ShortcutMenuBar.powershellRestartSession",
-		"onCommand:ShortcutMenuBar.userButton10",
 		"onCommand:ShortcutMenuBar.userButton01",
 		"onCommand:ShortcutMenuBar.userButton02",
 		"onCommand:ShortcutMenuBar.userButton03",
@@ -84,7 +79,8 @@
 		"onCommand:ShortcutMenuBar.userButton06",
 		"onCommand:ShortcutMenuBar.userButton07",
 		"onCommand:ShortcutMenuBar.userButton08",
-		"onCommand:ShortcutMenuBar.userButton09"
+		"onCommand:ShortcutMenuBar.userButton09",
+		"onCommand:ShortcutMenuBar.userButton10"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -924,7 +920,7 @@
 				{
 					"when": "config.ShortcutMenuBar.userButton01Command",
 					"command": "ShortcutMenuBar.userButton01",
-					"group": "navigation@30"
+					"group": "navigation@0"
 				},
 				{
 					"when": "config.ShortcutMenuBar.userButton02Command",
